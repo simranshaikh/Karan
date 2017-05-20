@@ -1,0 +1,46 @@
+create table login (username varchar2(20), 
+password varchar2(20),
+role varchar2(20));
+
+create table credit_card(ccnumber number(16) primary key,
+plan varchar2(10),
+balance number(15));
+
+
+create table user_table(user_id number(10) primary key,
+name varchar2(20),
+contact number(10),
+email varchar2(30),
+address varchar2(50),
+ccnumber number(16),
+ foreign key(ccnumber)  references credit_card(ccnumber));
+
+
+create table transactions(transaction_id number(10) primary key,
+user_id number(10), 
+transaction_date date,
+vendor varchar2(20),
+location varchar2(20), 
+amount number(10),
+remarks varchar2(20), 
+foreign key(user_id) references user_table(user_id));
+
+insert into login values('harshal','ninja','admin');
+insert into login values('vrunda','bhujbal','user');
+insert into login values('snehal','hirani','user');
+insert into login values('sadia','khurshid','admin');
+
+insert into credit_card values(9865321245780973,'silver',25000);
+insert into credit_card values(5642318971254623,'gold',35000);
+insert into credit_card values(9876543210123456,'platinum',60000);
+
+insert into user_table values(101,'vrunda',8147908988,'vrundabhujbal7@gmail.com','phase 1,hinjewadi,pune-412308',9865321245780973);
+insert into user_table values(102,'snehal',9865742310,'snehalhirani18@gmail.com','Ambegav,katraj,nagpur-544102',5642318971254623);
+insert into user_table values(103,'sadia',7884562315,'sadiakhurshid09@gmail.com','indira nagar,delhi-714506',9876543210123456);
+
+insert into transactions values(1001,101,'15-dec-2015','prabhu caterers','pune',1000,'food');
+insert into transactions values(1002,102,'25-jan-2016','D-mart','delhi',2500,'grocery');
+insert into transactions values(1003,101,'20-mar-2016','Instakart','chandrapur',13000,'e-cart');
+insert into transactions values(1004,103,'15-dec-2015','Faasos','pune',1500,'food');
+insert into transactions values(1005,101,'16-dec-2015','prabhu caterers','banglore',100,'food');
+insert into transactions values(1006,102,'1-apr-2016','krushna varities','pune',1350,'grocery');
